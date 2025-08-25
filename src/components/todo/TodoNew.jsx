@@ -1,16 +1,20 @@
+import { useState } from "react";
 
 const TodoNew = (props) => {
-    // console.log(">>> check point:", props)
+
+    // useState hook (getter/setter)
+    // const valueInput = "MU";
+    const [valueInput, setValueInput] = useState("MU")
+
     const { addNewTodo } = props;
-    // addNewTodo("Duy");
 
     // fire: khai hỏa / chạy 
     const handleClick = () => {
-        alert("click me")
+        console.log(">>> check: ", valueInput)
     }
 
     const handleOnChange = (name) => {
-        console.log(">>> handleInChange", name)
+        setValueInput(name)
     }
     return (
         <div className="todo-new">
@@ -21,6 +25,9 @@ const TodoNew = (props) => {
                 style={{ cursor: "pointer" }}
                 onClick={handleClick}
             >Add</button>
+            <div>
+                My text input is: {valueInput}
+            </div>
         </div>
     )
 }
