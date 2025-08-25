@@ -11,13 +11,6 @@ const App = () => {
     { id: 2, name: "Watching Youtube" }
   ])
 
-  const hoidanit = 'Khai Duy';
-  const age = 21;
-  const data = {
-    address: "Tien Giang",
-    coutry: "Viet Nam"
-  }
-
   const addNewTodo = (name) => {
     const newTodo = {
       id: randomIntFromInterval(1, 1000000),
@@ -38,9 +31,6 @@ const App = () => {
         addNewTodo={addNewTodo}
       />
       <TodoData
-        name={hoidanit}
-        age={age}
-        data={data}
         todoList={todoList}
       />
       <div className='todo-image'>
