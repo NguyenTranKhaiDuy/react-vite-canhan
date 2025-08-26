@@ -23,6 +23,11 @@ const App = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  const deleteTodo = (id) => {
+    const newTodo = todoList.filter(item => item.id !== id)
+    setTodoList(newTodo)
+  }
+
   //truyền prop từ cha sang con: {key: value}
   return (
     <div className="todo-container">
@@ -34,6 +39,7 @@ const App = () => {
       {todoList.length > 0 ?
         <TodoData
           todoList={todoList}
+          deleteTodo={deleteTodo}
         />
         :
         <div className='todo-image'>
