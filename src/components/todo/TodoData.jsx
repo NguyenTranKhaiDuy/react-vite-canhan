@@ -13,9 +13,6 @@ const TodoData = (props) => {
                         <button>Delete</button>
                     </div>)
             })}
-            <div>
-                {JSON.stringify(props.todoList)}
-            </div>
         </div>
     )
 }
