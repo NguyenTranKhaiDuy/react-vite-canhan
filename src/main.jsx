@@ -16,6 +16,17 @@ const router = createBrowserRouter([
     // định nghĩa component, điều hướng router
     path: "/",
     element: <App />,
+    // kế thừa layout của cha
+    children: [
+      {
+        path: "/users",
+        element: <UserPage />
+      },
+      {
+        path: "/products",
+        element: <ProductPage />
+      }
+    ]
   },
   {
     path: "/login",
@@ -24,15 +35,7 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />
-  },
-  {
-    path: "/users",
-    element: <UserPage />
-  },
-  {
-    path: "/products",
-    element: <ProductPage />
-  },
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
