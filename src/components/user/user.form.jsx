@@ -15,6 +15,11 @@ const UserForm = () => {
                 message: "Create user",
                 description: "Tạo user thành công"
             })
+        } else {
+            notification.error({
+                message: "Error create user",
+                description: JSON.stringify(res.message)
+            })
         }
     }
     return (
