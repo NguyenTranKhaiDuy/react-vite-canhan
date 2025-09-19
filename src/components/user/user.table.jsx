@@ -4,10 +4,7 @@ import { useEffect, useState } from 'react';
 
 const UserTable = () => {
 
-    const [dataUsers, setDataUsers] = useState([
-        { _id: "Khai Duy", fullname: 21, email: "HCM" },
-        { _id: "Phong", fullname: 23, email: "TG" }
-    ]);
+    const [dataUsers, setDataUsers] = useState([]);
 
     // empty array(rong) => run once 
     useEffect(() => {
@@ -22,7 +19,7 @@ const UserTable = () => {
         },
         {
             title: 'Full Name',
-            dataIndex: 'fullname',
+            dataIndex: 'fullName',
         },
         {
             title: 'Email',
