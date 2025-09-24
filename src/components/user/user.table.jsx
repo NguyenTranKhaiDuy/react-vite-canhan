@@ -2,7 +2,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { notification, Popconfirm, Table } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react';
-import ViewUserDetail from './view.user.modal';
+import ViewUserDetail from './view.user.detail';
 import { deleteUserAPI } from '../../services/api.service';
 
 const UserTable = (props) => {
