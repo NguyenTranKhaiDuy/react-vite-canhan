@@ -8,7 +8,7 @@ import { deleteUserAPI } from '../../services/api.service';
 const UserTable = (props) => {
     const { dataUsers, loadUser,
         current, pageSize, total,
-        setCurrent, setPageSize 
+        setCurrent, setPageSize
     } = props;
 
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
@@ -25,7 +25,7 @@ const UserTable = (props) => {
             title: 'STT',
             render: (_, record, index) => {
                 return (
-                    <>{index + 1}</>
+                    <>{(index + 1)+ (current-1) * pageSize}</>
                 )
             }
         },
@@ -97,6 +97,20 @@ const UserTable = (props) => {
     }
 
     const onChange = (pagination, filters, sorter, extra) => {
+        // setCurrent, setPageSize
+        // nếu trang thay đổi: current
+        if (pagination && pagination.current) {
+            if (pagination.current !== +current) {
+                setCurrent(+pagination.current)//"5" => 5
+            }
+        }
+
+        // nếu thay đổi tổng số phần tử: pageSize
+        if (pagination && pagination.pageSize) {
+            if (pagination.pageSize !== +pageSize) {
+                setPageSize(+pagination.pageSize)//"5" => 5
+            }
+        }
         console.log(">>> check:", { pagination, filters, sorter, extra })
     };
 
