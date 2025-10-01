@@ -8,7 +8,7 @@ import { deleteUserAPI } from '../../services/api.service';
 const UserTable = (props) => {
     const { dataUsers, loadUser,
         current, pageSize, total,
-        setCurrent, setPageSize
+        setCurrent, setPageSize 
     } = props;
 
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
