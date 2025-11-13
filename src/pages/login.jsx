@@ -1,22 +1,37 @@
 import { Button, Input, Form, notification, Row, Col, Divider, message } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUserAPI } from "../services/api.service";
+import { useState } from "react";
 
 const LoginPage = () => {
     const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const onFinish = (values) => {
-        console.log(">>> check value: ", values)
+    const onFinish = async (values) => {
+        setLoading(true)
+        const res = await loginUserAPI(values.email, values.password);
+        if (res.data) {
+            message.success("Đăng nhập thành công")
+            navigate("/");
+        } else {
+            notification.error({
+                message: "Error Login",
+                description: JSON.stringify(res.message)
+            })
+        }
+        setLoading(false)
     }
 
     return (
         <Row justify={"center"} style={{ marginTop: "30px" }}>
             <Col xs={24} md={16} lg={8}>
                 <fieldset style={{
-                    padding:"15px",
-                    margin:"5px",
-                    border:"1px solid #ccc ",
-                    borderRadius:"5px"
+                    padding: "15px",
+                    margin: "5px",
+                    border: "1px solid #ccc ",
+                    borderRadius: "5px"
                 }}>
                     <legend>Đăng nhập</legend>
                     <Form
@@ -29,7 +44,7 @@ const LoginPage = () => {
                             name="email"
                             rules={[
                                 {
-                                    require: true,
+                                    required: true,
                                     message: 'Email không được để trống',
                                 },
                                 {
@@ -46,7 +61,7 @@ const LoginPage = () => {
                             name="password"
                             rules={[
                                 {
-                                    require: true,
+                                    required: true,
                                     message: 'Password không được để trống',
                                 },
                             ]}
@@ -60,7 +75,9 @@ const LoginPage = () => {
                                 justifyContent: "space-between",
                                 alignItems: "center"
                             }}>
-                                <Button type='primary' onClick={() => form.submit()}>
+                                <Button 
+                                loading={loading}
+                                type='primary' onClick={() => form.submit()}>
                                     Login
                                 </Button>
                                 <Link to="/">Go to homepage <ArrowRightOutlined /></Link>
@@ -68,8 +85,8 @@ const LoginPage = () => {
                         </Form.Item>
 
                     </Form>
-                    <Divider/>
-                    <div style={{textAlign:"center"}}>Chưa có tài khoản? <Link to="/register">Đăng ký tại đây</Link></div>
+                    <Divider />
+                    <div style={{ textAlign: "center" }}>Chưa có tài khoản? <Link to="/register">Đăng ký tại đây</Link></div>
                 </fieldset>
             </Col>
         </Row>
