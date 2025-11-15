@@ -9,7 +9,7 @@ const LoginPage = () => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const {setUser} = useContext(AuthContext);
+    const { setUser } = useContext(AuthContext);
 
 
     const onFinish = async (values) => {
@@ -71,7 +71,9 @@ const LoginPage = () => {
                                 },
                             ]}
                         >
-                            <Input.Password />
+                            <Input.Password onKeyDown={(event) => {
+                                if (event.key === 'Enter') form.submit();
+                            }} />
                         </Form.Item>
 
                         <Form.Item>
@@ -80,9 +82,9 @@ const LoginPage = () => {
                                 justifyContent: "space-between",
                                 alignItems: "center"
                             }}>
-                                <Button 
-                                loading={loading}
-                                type='primary' onClick={() => form.submit()}>
+                                <Button
+                                    loading={loading}
+                                    type='primary' onClick={() => form.submit()}>
                                     Login
                                 </Button>
                                 <Link to="/">Go to homepage <ArrowRightOutlined /></Link>
