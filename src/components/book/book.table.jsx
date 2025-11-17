@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
+import BookDetail from "./book.detail";
 
 const BookTable = () => {
 
@@ -11,7 +12,6 @@ const BookTable = () => {
     const [total, setTotal] = useState(0);
 
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
-
     const [dataUpdate, setDataUpdate] = useState(null);
 
     const [dataDetail, setDataDetail] = useState(null);
@@ -151,6 +151,12 @@ const BookTable = () => {
                     }
                 }
                 onChange={onChange}
+            />
+            <BookDetail
+                dataDetail={dataDetail}
+                setDataDetail={setDataDetail}
+                isDetailOpen={isDetailOpen}
+                setIsDetailOpen={setIsDetailOpen}
             />
         </>
     )
