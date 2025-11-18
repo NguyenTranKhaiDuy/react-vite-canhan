@@ -12,7 +12,7 @@ const CreateBookControl = (props) => {
     const [category, setCategory] = useState("");
 
     const [selectedFile, setSelectedFile] = useState(null);
-    const [preview, setPreview] = useState("");
+    const [preview, setPreview] = useState(null);
 
     const resetAndCloseModal = () => {
         setMainText("");
@@ -84,7 +84,7 @@ const CreateBookControl = (props) => {
 
     return (
         <Modal
-            title="Create User"
+            title="Create Book"
             open={isCreateOpen}
             onOk={() => handleSubmitBtn()}
             onCancel={() => resetAndCloseModal()}
@@ -138,11 +138,9 @@ const CreateBookControl = (props) => {
                             { value: 'Arts', label: 'Arts' },
                             { value: 'Business', label: 'Business' },
                             { value: 'Comics', label: 'Comics' },
-
                             { value: 'Cooking', label: 'Cooking' },
                             { value: 'Entertainment', label: 'Entertainment' },
                             { value: 'History', label: 'History' },
-
                             { value: 'Music', label: 'Music' },
                             { value: 'Sports', label: 'Sports' },
                             { value: 'Teen', label: 'Teen' },

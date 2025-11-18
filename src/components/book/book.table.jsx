@@ -3,7 +3,7 @@ import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
 import BookDetail from "./book.detail";
-import CreateBookControl from "./create.book.control";
+import CreateBookUncontrolled from "./create.book.uncontrol";
 
 const BookTable = () => {
 
@@ -161,7 +161,12 @@ const BookTable = () => {
                 setIsDetailOpen={setIsDetailOpen}
             />
 
-            <CreateBookControl
+            {/* <CreateBookControl
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
+            /> */}
+            <CreateBookUncontrolled
                 isCreateOpen={isCreateOpen}
                 setIsCreateOpen={setIsCreateOpen}
                 loadBook={loadBook}
