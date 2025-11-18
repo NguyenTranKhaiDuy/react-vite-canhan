@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
 import BookDetail from "./book.detail";
 import CreateBookUncontrolled from "./create.book.uncontrol";
+import UpdateBookControl from "./update.book.control";
+import UpdateBookUncontrolled from "./update.book.uncontrol";
 
 const BookTable = () => {
 
@@ -169,6 +171,21 @@ const BookTable = () => {
             <CreateBookUncontrolled
                 isCreateOpen={isCreateOpen}
                 setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
+            />
+
+            {/* <UpdateBookControl
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
+                loadBook={loadBook}
+            /> */}
+            <UpdateBookUncontrolled
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
                 loadBook={loadBook}
             />
         </>
