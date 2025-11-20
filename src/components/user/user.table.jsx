@@ -8,7 +8,7 @@ import { deleteUserAPI } from '../../services/api.service';
 const UserTable = (props) => {
     const { dataUsers, loadUser,
         current, pageSize, total,
-        setCurrent, setPageSize
+        setCurrent, setPageSize, loadingUser
     } = props;
 
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
@@ -25,7 +25,7 @@ const UserTable = (props) => {
             title: 'STT',
             render: (_, record, index) => {
                 return (
-                    <>{(index + 1)+ (current-1) * pageSize}</>
+                    <>{(index + 1) + (current - 1) * pageSize}</>
                 )
             }
         },
@@ -129,6 +129,7 @@ const UserTable = (props) => {
                     }
                 }
                 onChange={onChange}
+                loading={loadingUser}
 
             />
             <UpdateUserModal

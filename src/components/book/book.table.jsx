@@ -21,12 +21,14 @@ const BookTable = () => {
     const [isDetailOpen, setIsDetailOpen] = useState(false);
 
     const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const [loadingTable, setLoadingTable] = useState(false);
 
     useEffect(() => {
         loadBook();
     }, [current, pageSize])
 
     const loadBook = async () => {
+        setLoadingTable(true)
         const res = await fetchAllBookAPI(current, pageSize);
         if (res.data) {
             setDataBook(res.data.result);
@@ -34,6 +36,7 @@ const BookTable = () => {
             setPageSize(res.data.meta.pageSize);
             setTotal(res.data.meta.total);
         }
+        setLoadingTable(false)
     }
 
     const handleDeleteBook = async (id) => {
@@ -167,6 +170,7 @@ const BookTable = () => {
                     }
                 }
                 onChange={onChange}
+                loading={loadingTable}
             />
             <BookDetail
                 dataDetail={dataDetail}

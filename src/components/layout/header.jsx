@@ -1,9 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserOutlined, HomeOutlined, ProductOutlined, SettingOutlined, LoginOutlined, AliwangwangOutlined } from '@ant-design/icons';
 import { Menu, message } from 'antd';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { logoutUserAPI } from '../../services/api.service';
+
 
 // thẻ a(anchor) - href sẽ load khi chuyển trang
 // thẻ link - to không cần load
@@ -14,6 +15,20 @@ const Header = () => {
     const { user, setUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    useEffect(()=>{
+        if (location && location.pathname) {
+            const allRoutes = ["users", "books"];
+            const currentRoute = allRoutes.find(item => `/${item}` === location.pathname);
+            if (currentRoute) {
+                setCurrent(currentRoute);
+            } else {
+                setCurrent("home");
+            }
+        }
+    },[location])
 
     const onClick = (e) => {
         setCurrent(e.key);

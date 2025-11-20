@@ -10,6 +10,7 @@ const UserPage = () => {
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(5);
     const [total, setTotal] = useState(0);
+    const [loadingUser, setLoadingUser] = useState(false);
 
     // empty array(rong) => run once 
     // not empty => next value !== prev value
@@ -18,6 +19,7 @@ const UserPage = () => {
     }, [current, pageSize]); // [] + condition
 
     const loadUser = async () => {
+        setLoadingUser(true)
         const res = await fetchAllUserAPI(current, pageSize);
         if (res.data) {
             setDataUsers(res.data.result);
@@ -25,6 +27,7 @@ const UserPage = () => {
             setPageSize(res.data.meta.pageSize);
             setTotal(res.data.meta.total);
         }
+        setLoadingUser(false)
     }
 
     return (
